@@ -16,6 +16,7 @@ import { fileURLToPath, pathToFileURL } from 'url';
 import { dirname, join } from 'path';
 import GlobalBan from './models/GlobalBan.js';
 import { sendGlobalLog, logEmbed, initLogChannelCache, getCachedLogChannelId } from './lib/logger.js';
+import { startImperiumNotifier } from './lib/imperiumNotifier.js';
 
 import { handleAppealInteraction } from './lib/appealHandler.js';
 
@@ -293,6 +294,7 @@ async function main() {
 
     await loadCommands();
     await client.login(process.env.DISCORD_TOKEN);
+    startImperiumNotifier(client);
   } catch (err) {
     console.error('❌ Startup error:', err.message);
     process.exit(1);
