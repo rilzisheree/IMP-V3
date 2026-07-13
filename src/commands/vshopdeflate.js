@@ -21,8 +21,29 @@ export default {
     await interaction.deferReply({ ephemeral: true });
 
     const item = await ShopItem.findOne({
-      guildId: interaction.guildId,
-      name: { $regex: new RegExp(`^${name}$`, 'i') },
+      name: { $regex: new RegExp(`^${name}import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
+import { isLT } from '../lib/valorPerms.js';
+import ShopItem from '../models/ShopItem.js';
+
+export default {
+  data: new SlashCommandBuilder()
+    .setName('vshopdeflate')
+    .setDescription('Decrease an item\'s price in the shop. (LT only)')
+    .addStringOption(opt =>
+      opt.setName('item').setDescription('Name of the item').setRequired(true))
+    .addIntegerOption(opt =>
+      opt.setName('amount').setDescription('Amount to decrease the price by').setRequired(true).setMinValue(1)),
+
+  async execute(interaction) {
+    if (!await isLT(interaction.member)) {
+      return interaction.reply({ content: 'You need the Loreteam role to use this command.', ephemeral: true });
+    }
+
+    const name   = interaction.options.getString('item');
+    const amount = interaction.options.getInteger('amount');
+    await interaction.deferReply({ ephemeral: true });
+
+, 'i') },
     });
 
     if (!item) {

@@ -9,7 +9,7 @@ export default {
   async execute(interaction) {
     await interaction.deferReply();
 
-    const items = await ShopItem.find({ guildId: interaction.guildId }).sort({ price: 1 }).lean();
+    const items = await ShopItem.find({}).sort({ price: 1 }).lean();
 
     if (!items.length) {
       return interaction.editReply({

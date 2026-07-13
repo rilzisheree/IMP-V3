@@ -9,7 +9,7 @@ export default {
   async execute(interaction) {
     await interaction.deferReply({ ephemeral: true });
 
-    const inv   = await Inventory.findOne({ userId: interaction.user.id, guildId: interaction.guildId });
+    const inv   = await Inventory.findOne({ userId: interaction.user.id });
     const items = inv?.items ?? [];
 
     const embed = new EmbedBuilder()

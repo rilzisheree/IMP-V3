@@ -17,7 +17,7 @@ export default {
     const target = interaction.options.getUser('user');
     await interaction.deferReply({ ephemeral: true });
 
-    const inv = await Inventory.findOne({ userId: target.id, guildId: interaction.guildId });
+    const inv = await Inventory.findOne({ userId: target.id });
     const items = inv?.items ?? [];
 
     const embed = new EmbedBuilder()
