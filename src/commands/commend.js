@@ -31,7 +31,7 @@ export default {
     await interaction.deferReply();
 
     const record = await Valor.findOneAndUpdate(
-      { userId: target.id, guildId: interaction.guildId },
+      { userId: target.id },
       { $inc: { valor: amount } },
       { upsert: true, new: true }
     );

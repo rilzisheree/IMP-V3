@@ -21,7 +21,7 @@ export default {
 
     await interaction.deferReply();
 
-    const record = await Valor.findOne({ userId: resolvedUser.id, guildId: interaction.guildId });
+    const record = await Valor.findOne({ userId: resolvedUser.id });
     const valor  = record?.valor ?? 0;
 
     const embed = new EmbedBuilder()

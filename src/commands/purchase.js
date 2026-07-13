@@ -30,7 +30,7 @@ export default {
     }
 
     const totalCost   = shopItem.price * qty;
-    const valorRecord = await Valor.findOne({ userId: interaction.user.id, guildId: interaction.guildId });
+    const valorRecord = await Valor.findOne({ userId: interaction.user.id });
     const current     = valorRecord?.valor ?? 0;
 
     if (current < totalCost) {
@@ -40,7 +40,7 @@ export default {
     }
 
     await Valor.findOneAndUpdate(
-      { userId: interaction.user.id, guildId: interaction.guildId },
+      { userId: interaction.user.id },
       { $inc: { valor: -totalCost } },
       { upsert: true }
     );

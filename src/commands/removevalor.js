@@ -30,7 +30,7 @@ export default {
 
     await interaction.deferReply();
 
-    const existing = await Valor.findOne({ userId: target.id, guildId: interaction.guildId });
+    const existing = await Valor.findOne({ userId: target.id });
     const current  = existing?.valor ?? 0;
 
     if (current === 0) {
@@ -40,7 +40,7 @@ export default {
     const actualRemove = Math.min(amount, current);
 
     const record = await Valor.findOneAndUpdate(
-      { userId: target.id, guildId: interaction.guildId },
+      { userId: target.id },
       { $inc: { valor: -actualRemove } },
       { upsert: true, new: true }
     );
