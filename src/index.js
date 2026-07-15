@@ -62,7 +62,7 @@ client.once(Events.ClientReady, async () => {
   console.log(`📡 Serving ${client.guilds.cache.size} server(s)`);
 
   client.user.setPresence({
-    activities: [{ name: 'Moderating ???.', type: ActivityType.Watching }],
+    activities: [{ name: 'Moderating The Unseen World.', type: ActivityType.Watching }],
     status: 'online',
   });
 });
